@@ -11,8 +11,8 @@ const server = https.createServer(
         key: fs.readFileSync('/etc/letsencrypt/live/api-test.nerfic.fr/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/api-test.nerfic.fr/fullchain.pem'),
         ca: fs.readFileSync('/etc/nginx/ssl/client-cert.pem'),
-        requestCert: true, // Activer la demande de certificat client
-        rejectUnauthorized: true // Rejeter les connexions non autorisées (sans certificat client)
+        requestCert: false, // Activer la demande de certificat client
+        rejectUnauthorized: false // Rejeter les connexions non autorisées (sans certificat client)
     },
     app
 );
@@ -29,5 +29,5 @@ app.use((req: any, res: Response, next: NextFunction) => {
 app.use(routes)
 
 server.listen(process.env.SERVER_PORT, () => {
-    console.log(`API CI/CD listening on port ${process.env.SERVER_PORT}!`)
+    console.log(`API CI/CD listening on port (MTLS) ${process.env.SERVER_PORT}!`)
 })
