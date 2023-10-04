@@ -11,8 +11,8 @@ const server = https.createServer(
         key: fs.readFileSync('/etc/letsencrypt/live/api-test.nerfic.fr/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/api-test.nerfic.fr/fullchain.pem'),
         ca: fs.readFileSync('/etc/nginx/ssl/client-cert.pem'),
-        requestCert: false, // Activer la demande de certificat client
-        rejectUnauthorized: false // Rejeter les connexions non autorisées (sans certificat client)
+        requestCert: true, // Activer la demande de certificat client
+        rejectUnauthorized: true // Rejeter les connexions non autorisées (sans certificat client)
     },
     app
 );
