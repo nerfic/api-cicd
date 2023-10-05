@@ -4,6 +4,15 @@ import routes from './src/router/routes';
 
 const app = express();
 
+app.use((req, res, next) => {
+    console.log("New request on", req.originalUrl);
+    next();
+});
+
+app.get('/', (req, res) => {
+    res.send('API ON')
+})
+
 app.use(routes)
 
 app.listen(process.env.SERVER_PORT, () => {
